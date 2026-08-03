@@ -1,0 +1,22 @@
+modLoader="javafml"
+loaderVersion="[1,)"
+license="MIT License"
+
+[[mods]]
+modId="imewarmup"
+displayName="Ime Warmup"
+version="${version}"
+authors="shihyeon"
+description='''
+Keeps the macOS input method session alive so the first characters typed into a text field are composed instead of committed one by one (MC-310487).
+'''
+
+[[mixins]]
+config="imewarmup.mixins.json"
+
+[[dependencies.imewarmup]]
+modId="minecraft"
+type="required"
+versionRange="[${minecraft_version},)"
+ordering="NONE"
+side="CLIENT"

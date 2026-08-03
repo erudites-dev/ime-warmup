@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "dev.erudites.mods.imewarmup.mixin",
+  "plugin": "dev.erudites.mods.imewarmup.ImeWarmupMixinPlugin",
+  "compatibilityLevel": "JAVA_25",
+  "mixins": [],
+  "client": [
+    "input.KeyboardHandlerMixin",
+    "platform.TextInputManagerAccessor",
+    "platform.TextInputManagerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

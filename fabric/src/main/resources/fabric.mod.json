@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "imewarmup",
+  "version": "${version}",
+  "name": "Ime Warmup",
+  "description": "Keeps the macOS input method session alive so the first characters typed into a text field are composed instead of committed one by one (MC-310487).",
+  "authors": [
+    "shihyeon"
+  ],
+  "license": "MIT License",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "dev.erudites.mods.imewarmup.fabric.client.ImeWarmupClientFabricMod"
+    ]
+  },
+  "mixins": [
+    "imewarmup.mixins.json"
+  ],
+  "depends": {
+    "java": ">=25",
+    "fabricloader": ">=${fabric_loader_version}",
+    "minecraft": ">=${minecraft_version}"
+  }
+}
