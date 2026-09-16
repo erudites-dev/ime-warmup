@@ -3,11 +3,11 @@ import org.gradle.api.Project
 object BuildConfig {
     val JAVA_VERSION: Int = 25
 
-    val MINECRAFT_VERSION_RANGE: String = ">=26.1" // range: ">=26.1 <27.1"
+    val MINECRAFT_VERSION_RANGE: String = ">=26.3" // range: ">=26.1 <27.1"
     val MINECRAFT_VERSION_MIN: String = MINECRAFT_VERSION_RANGE.split(" ")[0].replace(Regex("^[><=!\\[\\]()]+"), "")
-    val MINECRAFT_VERSION: String = "26.1.2"
-    val NEOFORGE_VERSION: String = "26.1.2.86"
-    val FABRIC_LOADER_VERSION: String = "0.19.3"
+    val MINECRAFT_VERSION: String = "26.3"
+    val NEOFORGE_VERSION: String = "26.3.0.1-beta"
+    val FABRIC_LOADER_VERSION: String = "0.19.5"
 
     // https://semver.org/
     var MOD_VERSION: String = "0.1.0"

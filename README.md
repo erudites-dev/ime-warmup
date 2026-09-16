@@ -6,16 +6,18 @@ typing `안녕하세요` in chat comes out as `ㅇㅏㄴ녕하세요`. Japanese 
 
 ## Why it happens
 
-Since 26.1 `TextInputManager` turns the Ime off whenever no text field is focused, and back on when one gains
-focus. On macOS the input method is a separate process, so activating the text input context does not
-establish the composition session synchronously — it takes on the order of a hundred milliseconds. Keystrokes
-arriving in the meantime are translated by the keyboard layout alone and committed as raw characters.
+`TextInputManager` stops text input whenever no text field is focused, so that gameplay keys are not swallowed
+by composition, and starts it again when one gains focus. On macOS the input method is a separate process, so
+starting text input does not establish the composition session synchronously — it takes on the order of a
+hundred milliseconds. Keystrokes arriving in the meantime are translated by the keyboard layout alone and
+committed as raw characters.
 
 ## What it does
 
-`TextInputManager.tickOutsideTextInput` is the only place vanilla deactivates the Ime, and this mod skips it,
-so the session is never torn down. Composition that then happens while no screen is open is discarded in
-`KeyboardHandler.preeditCallback`, which also keeps a leftover pre-edit from being replayed into the next text
-field that gains focus.
+`TextInputManager.stopTextInput` is the only place vanilla tears the session down, and this mod skips the
+`SDL_StopTextInput` call, so it is never stopped. Vanilla's own bookkeeping is left untouched, so it still
+knows whether a text field owns the input, and the Ime events that arrive while none does are dropped in
+`KeyboardHandler`. That restores vanilla's invariant of producing no text events outside a text field, and
+keeps a leftover pre-edit from being replayed into the next field that gains focus.
 
 Launch with `-Dimewarmup.debug=true` to log Ime activations and discarded compositions.
